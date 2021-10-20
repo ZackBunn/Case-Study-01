@@ -28,6 +28,7 @@ breweries <- read.csv("breweries.csv", header= TRUE)
 
 
 #1 Breweries per State
+#First we attempted to group the amount 
 BrewsPerState <- breweries %>% group_by(State) %>% count(State)
 #Colorado had the most breweries, followed by California, then Missouri
 #DC, ND, South Dakota, and West Virginia all have 1 brewery
