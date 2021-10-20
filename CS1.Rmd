@@ -111,7 +111,6 @@ CM = confusionMatrix(table(classifications, test$Style))
 CM
 
 #9 Set up an EDA
-mergeDF %>% ggplot(aes(x = State, y = ABV)) + geom_bin2d() + theme_classic()
+#we chose to look at the ABV counts per State
+mergeDF %>% ggplot(aes(x = State, y = ABV)) + geom_count(show.legend = FALSE) + theme_solarized()
 
-theme_set(theme_bw())  
-mergeDF %>% ggplot(aes(x = State, y = ABV,color=State)) + geom_count(show.legend = FALSE)
