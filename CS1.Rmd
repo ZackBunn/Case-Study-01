@@ -28,12 +28,13 @@ breweries <- read.csv("breweries.csv", header= TRUE)
 
 
 #1 Breweries per State
-#First we attempted to group the amount 
+#By using the Brewery dataset, we grouped and counted the number of breweries in each state. 
+#We found the state of Colorado with 47 breweries has the most breweries in the country.  DC, ND, South Dakota, 
+#and West Virginia each with 1 brewery have the least number of breweries in the country.
 BrewsPerState <- breweries %>% group_by(State) %>% count(State)
-#Colorado had the most breweries, followed by California, then Missouri
-#DC, ND, South Dakota, and West Virginia all have 1 brewery
 
-#1- Sorted by amount of breweries
+
+#1- We then sorted the list in a descending order
 BrewsPerState %>% ggplot(aes(x=reorder(State, -n),y=n)) + geom_bar(stat = "identity") +
   ggtitle( "Number of Breweries per State") + xlab("State") + ylab("Number of Breweries") +
   geom_text(aes(label = signif(n, digits = 2)), nudge_y = 2)  + theme_solarized()
