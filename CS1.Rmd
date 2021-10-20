@@ -1,3 +1,11 @@
+---
+title: "CS1 Anheuser-Busch"
+author: "Edwin Karabidian, John Girard, and Zack Bunn"
+date: "10/9/2021"
+output: html_document
+---
+
+```{r}
 getwd()
 list.files()
 library(tidyverse)
@@ -111,6 +119,8 @@ CM = confusionMatrix(table(classifications, test$Style))
 CM
 
 #9 Set up an EDA
-#we chose to look at the ABV counts per State
-mergeDF %>% ggplot(aes(x = State, y = ABV)) + geom_count(show.legend = FALSE) + theme_solarized()
+mergeDF %>% ggplot(aes(x = State, y = ABV)) + geom_bin2d() + theme_classic()
 
+theme_set(theme_bw())  
+mergeDF %>% ggplot(aes(x = State, y = ABV,color=State)) + geom_count(show.legend = FALSE)
+```
