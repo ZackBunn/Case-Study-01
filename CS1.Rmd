@@ -105,7 +105,17 @@ maxIBU$ABV %>% ggplot(aes(x = reorder(State, -IBU), y = IBU)) + geom_bar(stat = 
 
 #6 Summary of ABV 
 #Using the summary function, we displayed each quartile, the minimum ABV (.027), the Maximum (0.125), Median (0.057), and Mean ( .05991)
-summary(mergeDFABV$ABV)
+s=summary(mergeDFABV$ABV)
+
+mergeDFABV$ABV %>% ggplot(aes(x = ABV, y = count)) + geom_boxplot() + ggtitle("Boxplot of City MPG v. Class")
+boxplot(mergeDFABV$ABV, xlab = "ABV Count From All the States", main ="Boxplot of ABV Data Summary", horizontal=TRUE, col='darkred')
+
+df=data_frame(mergeDFABV$ABV)
+
+ggplot(df, aes(x=mergeDFABV$ABV)) + geom_histogram(color="black", fill="#FF6666") + theme_solarized() + ggtitle("Histogram of ABV Data Summary")
+
+head(mergeDFABV)
+
 
 #We created a boxplot of the summary of the ABV data to visualize how wide the range is.
 boxplot(mergeDFABV$ABV, xlab = "ABV Count From All the States", main ="Boxplot of ABV Data Summary", horizontal=TRUE, col='darkred')
