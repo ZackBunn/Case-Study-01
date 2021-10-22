@@ -112,9 +112,11 @@ boxplot(mergeDFABV$ABV, xlab = "ABV Count From All the States", main ="Boxplot o
 #The average ABV is between 5.9% and 6% 
 
 #7 Relationship between bitterness and ABV
-#By state, not used
+#By state, not used- where not satisfied with the presentation of the graph
 mergeDF %>% ggplot(aes(x = ABV, y = IBU)) + geom_point() + geom_smooth(method = "loess") + facet_wrap(~State)
-#line of best fit
+#To analyze the relatioship between the bitter taste of a beer and the "strength" of a beer we chose to represent these by a trend line of best fit. By doing it this way we are 
+#able to look at popular selling beer and make decesions based on how they sell. Budweiser should look at popular ABV and IBU combonitations in the accepted ratios
+#as opprotunities to launch new products in
 mergeDF %>% ggplot(mapping = aes(IBU,ABV), fill = "Style") + geom_point() + geom_smooth(method = "gam") + theme_solarized()
 
 
