@@ -121,10 +121,10 @@ mergeDF %>% ggplot(mapping = aes(IBU,ABV), fill = "Style") + geom_point() + geom
 
 
 #8 KNN
-
+#Our team wanted to look at Beers with only names with "Ale" or "IPA" in them
 #get IPA and Ale strings
 NameGame <- filter(mergeDF, grepl('IPA|Ale', Style))
-
+#Our dataframe is renamed
 testname <- NameGame
 
 
@@ -145,5 +145,7 @@ CM = confusionMatrix(table(classifications, test$Style))
 CM
 
 #9 Set up an EDA
+#Our EDA is set to determine the frequencies of a beer's ABV in it's respected State. The larger the amount of beer near that frequency is determines how big the dot is on
+#the chart.
 mergeDF %>% ggplot(aes(x = State, y = ABV)) + geom_count(show.legend = FALSE) + theme_solarized()
 ```
