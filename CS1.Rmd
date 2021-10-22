@@ -57,42 +57,59 @@ head(mergeDF)
 
 #4 plot median abv and ibu with bar plot
 #make two DF's
+#We separated our merged table into two separate tables, one for ABV and one for IBU, in order to manipulate the data easier
+
 mergeDFABV <- mergeDF
 mergeDFIBU <- mergeDF
 
 #Calculate Median ABV
+#This is for displaying the median value of .067 and removing the na values. We used the aggregate method to calculate the median for each state.
 median(mergeDFABV$ABV, na.rm = TRUE)
 MedianABV <- aggregate(ABV~State,mergeDFABV, FUN = median)
+
 #Plot Median ABV
+#We plotted the median ABV values for each state using a bar graph along with a title and labels
 MedianABV %>% ggplot(aes(x = State, y = ABV)) + geom_bar(stat = "identity") + ggtitle("Median ABV by State") + xlab("State") + ylab("Median ABV")
 
 #Calculate Median IBU
+#This block of code is the same as median ABV but applied to IBU, the result median is 61
 median(mergeDFIBU$IBU, na.rm = TRUE)
 MedianIBU <- aggregate(IBU~State,mergeDFIBU, FUN = median)
+
 #Plot Median IBU
+#This one is an identical graph to the median ABV
 MedianIBU %>% ggplot(aes(x = State, y = IBU)) + geom_bar(stat = "identity") + ggtitle("Median IBU by State") + xlab("State") + ylab("Median IBU")
 
 
 #5 Find the Max ABV and IBU
 
 #Calculate Max ABV
+#To do this we first had to merge the ABV values and use the Max function to sort the highest value. 
+#In addition, we set max to it's own data frame in order to display it easier. The max ABV is .125
 Max(merge(mergeDFABV$ABV, na.rm = TRUE))
 max <- aggregate(ABV~State,mergeDFABV, FUN = max)
 
 #Plot Max ABV
+#The Max ABV was plotted in a similar fashion as the median data sets, though for this we added extra style with themes.
 max_ABV %>% ggplot(aes(x = State, y = IBU)) + geom_bar(stat = "identity") + ggtitle("Max IBU by State") + xlab("State") + ylab("Max ABV") + geom_text(aes(label = signif(IBU, digits = 3)), nudge_y = 5) + theme_solarized()
 
 #Caclulate Max IBU
+#This method is similar to to Max ABV, but we only were able to display the Max IBU and not each state.
 max(mergeDFIBU$IBU, na.rm = TRUE)
 maxIBU <- aggregate(IBU~State,mergeDFIBU, FUN = max)
+
 #Plot Max IBU
+#This plot displays the state with the Max IBU which was Bitter B---- Imperial IPA in Oregon with 138 IBU
 maxIBU$ABV %>% ggplot(aes(x = reorder(State, -IBU), y = IBU)) + geom_bar(stat = "identity") + ggtitle("Max IBU by State") + xlab("State") + ylab("Max IBU") + 
   geom_text(aes(label = signif(ABV, digits = 2)), nudge_y = .003) + theme_solarized()
 
 #6 Summary of ABV 
+#Using the summary function, we displayed each quartile, the minimum ABV (.027), the Maximum (0.125), Median (0.057), and Mean ( .05991)
 summary(mergeDFABV$ABV)
+
+#We created a boxplot of the summary of the ABV data to visualize how wide the range is.
 boxplot(mergeDFABV$ABV, xlab = "ABV Count From All the States", main ="Boxplot of ABV Data Summary", horizontal=TRUE, col='darkred')
-#the average ABV is between 5.9% and 6% 
+#The average ABV is between 5.9% and 6% 
 
 #7 Relationship between bitterness and ABV
 #By state, not used
