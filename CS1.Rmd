@@ -128,7 +128,7 @@ NameGame <- filter(mergeDF, grepl('IPA|Ale', Style))
 testname <- NameGame
 
 
-#KNN
+#KNN is done to set up the relationship between our new namegame DF. Whenever we run this CM we can determine with accuracy that there is a 61%
 knn(NameGame[,3:4],testname, NameGame$Style, prob = TRUE, k = 5)
 IPA_Ale = filter(mergeDF, grepl('IPA|Ale', Style))
 #  only IPA, Ale, Style
