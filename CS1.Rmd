@@ -6,6 +6,10 @@ output: html_document
 ---
 
 ```{r}
+#Intro
+#We at BGK Data Analytics have evaluated Beer varieties across the United States. We have detailed below our findings with market trends and
+#suggestions on where to focus and drive the business. Thanks for Choosing BGK
+
 getwd()
 list.files()
 library(tidyverse)
